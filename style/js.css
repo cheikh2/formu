@@ -1,0 +1,12 @@
+ li a{
+    color: aliceblue;
+    font-size: 120%;
+    font-weight: bold;  
+}
+.img{
+    background-image: url('../img/aceuil.jpg');
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 700px;
+    
+}
