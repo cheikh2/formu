@@ -1,7 +1,8 @@
 <?php
 
 ///ouverture d'une connexion à la base de données formulaire
-$connexion = new PDO('mysql:host = localhost;dbname=formulaire', 'cheikh1', 'abcdef');
+require_once 'fonctions.php'; 
+$connexion = getConnexion();
 
 //preparation de la requete
 $requete = $connexion->prepare('UPDATE employers set Nom=:Nom, Prenom=:Prenom, Date_de_naissance=:Date_de_naissance, 
@@ -13,7 +14,7 @@ $requete->bindValue(':Nom', $_POST['nom'], PDO::PARAM_STR);
 $requete->bindValue(':Prenom', $_POST['prenom'], PDO::PARAM_STR);
 $requete->bindValue(':Date_de_naissance', $_POST['date'], PDO::PARAM_STR);
 $requete->bindValue(':Salaire', $_POST['salaire'], PDO::PARAM_INT);
-$requete->bindValue(':Telephone', $_POST['tel'], PDO::PARAM_STR);
+$requete->bindValue(':Telephone', $_POST['tel'], PDO::PARAM_INT);
 $requete->bindValue(':Email', $_POST['email'], PDO::PARAM_STR);
 
  //execute la requete (cette methode renvoie true ou false si elle a reussi ou pas)
