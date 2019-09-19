@@ -1,5 +1,5 @@
-<?php require 'fonctions.php'; 
-$connexion = new PDO('mysql:host = localhost;dbname=formulaire', 'cheikh1', 'abcdef');
+<?php require_once 'fonctions.php'; 
+$connexion = getConnexion();
 
 $requete=$connexion->prepare("SELECT COUNT(*) FROM employers");//selectionner le nombre de colonne
 $requete->execute();//executer la requete
@@ -72,8 +72,8 @@ if(!empty($_POST)){
     require_once 'connexion.php';
 
 
-    $req = $pdo -> prepare("INSERT_INTO employers SET  matricule = ?, nom = ?, prenom = ?, date = ?, salaire = ?, tel = ?, email = ?");
-    $req -> execute([$_POST['nom'], $_POST['prenom'], $_POST['date'], $_POST['salaire'], $_POST['tel'], $_POST['email']]);
+    $requete = $connexion -> prepare("INSERT INTO employers SET  matricule = ?, nom = ?, prenom = ?, date = ?, salaire = ?, tel = ?, email = ?");
+    $requete -> execute([$_POST['nom'], $_POST['prenom'], $_POST['date'], $_POST['salaire'], $_POST['tel'], $_POST['email']]);
     die('une ligne a été ajoutéé');
     }
 
@@ -107,34 +107,33 @@ if(!empty($_POST)){
 
         <div class="form-group">
         <label for="" class="form control-label"></label>
-        nom: <input type="text" class="form-control" name="nom" placeholder="Veuillez entrer votre nom" >
+        nom: <input type="text" class="form-control" name="nom" placeholder="Veuillez entrer votre nom" required>
         </div>
 
         <div class="form-group">
         <label for="" class="form control-label"></label>
-        Prenom: <input type="text" class="form-control" name="prenom" placeholder="Veuillez entrer votre prenom">
+        Prenom: <input type="text" class="form-control" name="prenom" placeholder="Veuillez entrer votre prenom" required>
         </div>
 
         <div class="form-group">
         <label for="" class="form control-label"></label>
-        Date de naissance: <input type="text" class="form-control" name="date" placeholder="jj/MM/AA">
-        
+        Date de naissance: <input type="text" class="form-control" name="date" placeholder="jj/MM/AA" required>
         </div>
         
 
         <div class="form-group">
         <label for="" class="form control-label"></label>
-        Salaire: <input type="text" class="form-control" name="salaire" placeholder="50000-2000000"> 
+        Salaire: <input type="text" class="form-control" name="salaire" placeholder="50000-2000000" required> 
         </div>
         
         <div class="form-group">
         <label for="" class="form control-label"></label>
-        Téléphone: <input type="text" class="form-control" name="tel">
+        Téléphone: <input type="text" class="form-control" name="tel" placeholder="777777777" required>
         </div>
         
         <div class="form-group">
         <label for="" class="form control-label"></label>
-        Email: <input type="text" class="form-control" name="email" placeholder="aaaa@gmail.com">
+        Email: <input type="text" class="form-control" name="email" placeholder="aaaa@gmail.com" required>
         </div>
     
         <input  class="btn btn-success" type="submit" name="Envoyer" value="Envoyer">
@@ -147,4 +146,3 @@ if(!empty($_POST)){
     </div>
 </body>
 
-</html>
