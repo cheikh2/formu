@@ -1,6 +1,7 @@
 <?php
 ///ouverture d'une connexion à la base de données formulaire
-$connexion = new PDO('mysql:host = localhost;dbname=formulaire', 'cheikh1', 'abcdef');
+    require_once 'fonctions.php'; 
+    $connexion = getConnexion();
 
 //preparation de la requete
 $requete = $connexion->prepare('INSERT INTO employers VALUES(:Matricule, :Nom, 
@@ -12,14 +13,14 @@ $requete -> bindValue(':Nom', $_POST['nom'], PDO::PARAM_STR);
 $requete -> bindValue(':Prenom', $_POST['prenom'], PDO::PARAM_STR);
 $requete -> bindValue(':Date_de_naissance', $_POST['date'], PDO::PARAM_STR);
 $requete -> bindValue(':Salaire', $_POST['salaire'], PDO::PARAM_INT);
-$requete -> bindValue(':Telephone', $_POST['tel'], PDO::PARAM_STR);
+$requete -> bindValue(':Telephone', $_POST['tel'], PDO::PARAM_INT);
 $requete -> bindValue(':Email', $_POST['email'], PDO::PARAM_STR);
 
 
 //executer la requete preparee
 $insertIsOk = $requete ->execute();
 if($insertIsOk){
-    $message = 'La ligne a été ajouté dans la BD';
+    $message = 'EMPLOYER AJOUTÉ AVEC SUCCÈS';
     header("Location:lister.php");
 }
 else{
@@ -36,7 +37,6 @@ else{
     <title>Document</title>
 </head>
 <body>
-    <h1>Ajouter des lignes</h1>
     <p><?php echo $message; ?></p>
 </body>
 </html>
