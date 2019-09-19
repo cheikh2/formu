@@ -1,6 +1,7 @@
 <?php
    ///ouverture d'une connexion à la base de données formulaire
-$connexion = new PDO('mysql:host = localhost;dbname=formulaire', 'cheikh1', 'abcdef');
+   require_once 'fonctions.php'; 
+   $connexion = getConnexion();
 
 /*la preparation de la requête(dans le cas present, utiliser une requete preparée n'a aucun
  interet, mais je vais utiliser la même methode que l'insertion pour rester simple)*/
